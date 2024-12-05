@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CURD UI</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <h2 class="navlog">CURD UI</h2>
+        <nav class="navig">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact Us</a>
+            <button class="btnlog btn btn-primary" data-bs-toggle="modal" data-bs-target="#authModal">
+                Login
+            </button>
+        </nav>
+    </header>
+    <!-- Modal Start -->
+    <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="authModalLabel">Login / Register</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Login Form -->
+                    <div id="loginForm">
+                        <form>
+                            <div class="mb-3">
+                                <label for="loginEmail" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="loginEmail" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="loginPassword" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="loginPassword" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="loginBtn">Login</button>
+                        </form>
+                        <p class="mt-3">Don't have an account? <a href="#" id="showRegisterLink">Register here</a></p>
+                    </div>
+                    <!-- Register Form -->
+                    <div id="registerForm" style="display: none;">
+                        <form>
+                            <div class="mb-3">
+                                <label for="registerName" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="registerName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="registerEmail" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="registerEmail" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="registerPassword" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="registerPassword" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </form>
+                        <p class="mt-3">Already have an account? <a href="#" id="showLoginLink">Login here</a></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="image-overlay">
+        <h1>Welcome to CURD UI</h1>
+        <p>Manage your data seamlessly</p>
+        <button class="btn btn-primary" id="startBtn">Let's Start</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    
+    <script>
+    document.getElementById('showRegisterLink').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('registerForm').style.display = 'block';
+    });
+    
+    document.getElementById('showLoginLink').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('registerForm').style.display = 'none';
+        document.getElementById('loginForm').style.display = 'block';
+    });
+    document.getElementById('startBtn').addEventListener('click', function() {
+        var authModal = new bootstrap.Modal(document.getElementById('authModal'));
+        authModal.show();
+        document.getElementById('registerForm').style.display = 'none';
+        document.getElementById('loginForm').style.display = 'block';
+    });
+    // Validation
+    document.getElementById('loginBtn').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent form submission
+    
+        var form = document.querySelector('#loginForm form');
+        
+        // Check if the form is valid
+        if (form.checkValidity()) {
+            window.location.href = "form.html"; // Redirect to form.html after successful login
+        } else {
+            form.reportValidity();
+        }
+    });
+    document.querySelector('#registerForm button').addEventListener('click', function(event) {
+        event.preventDefault();
+        var form = document.querySelector('#registerForm form');
+        if (form.checkValidity()) {
+            window.location.href = "form.html";
+        } else {
+            form.reportValidity();
+        }
+    });    
+    </script>
+     
+</body>
+</html>
